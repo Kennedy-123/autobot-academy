@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { SignedIn, SignedOut, UserButton, SignInButton } from '@clerk/nextjs';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
@@ -42,12 +41,7 @@ const Navbar = () => {
         {/* Right Section */}
         <div className="flex items-center gap-4">
           {/* Auth */}
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-          <SignedOut>
-            <SignInButton mode="modal" />
-          </SignedOut>
+          <p>SIGNUP</p>
 
           {/* Mobile Menu Button (Details Page Only) */}
           {isDetailsPage && (
