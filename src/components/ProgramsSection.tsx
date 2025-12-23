@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import FrontendImage from "../images/Frontend-Development-(1).webp";
 import BackendImage from "../images/Backend-Development.webp";
 import FullstackImage from "../images/full-stack-web-development.jpg";
@@ -14,7 +15,9 @@ const ProgramsSection: React.FC = () => {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Frontend Development Program Card */}
-          <div className="border rounded-lg overflow-hidden shadow-md flex flex-col"> {/* Added flex-col */}
+          <div className="border rounded-lg overflow-hidden shadow-md flex flex-col">
+            {" "}
+            {/* Added flex-col */}
             <div className="relative">
               <span className="absolute top-2 left-2 bg-blue-500 text-white px-3 py-1 rounded-md text-sm">
                 ON CAMPUS
@@ -25,7 +28,9 @@ const ProgramsSection: React.FC = () => {
                 className="w-full"
               />
             </div>
-            <div className="p-6 flex-grow"> {/* Added flex-grow */}
+            <div className="p-6 flex-grow">
+              {" "}
+              {/* Added flex-grow */}
               <h3 className="text-xl font-semibold mb-2">
                 Frontend Development
               </h3>
@@ -44,7 +49,7 @@ const ProgramsSection: React.FC = () => {
                 </span>
               </div>
             </div>
-            <div className="flex justify-between items-center p-4 bg-gray-100">
+            <div className="flex justify-between items-center p-4 bg-blue-500 text-white font-bold">
               <div>
                 <h3>₦350,000</h3>
               </div>
@@ -52,8 +57,7 @@ const ProgramsSection: React.FC = () => {
               <div>
                 <a
                   href="/pdf/docker_cheatsheet.pdf"
-                  download={"Frontend-syllabus"}
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200"
+                  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-200"
                 >
                   Download Syllabus
                 </a>
@@ -62,7 +66,9 @@ const ProgramsSection: React.FC = () => {
           </div>
 
           {/* Backend Development Program Card */}
-          <div className="border rounded-lg overflow-hidden shadow-md flex flex-col"> {/* Added flex-col */}
+          <div className="border rounded-lg overflow-hidden shadow-md flex flex-col">
+            {" "}
+            {/* Added flex-col */}
             <div className="relative">
               <span className="absolute top-2 left-2 bg-blue-500 text-white px-3 py-1 rounded-md text-sm">
                 ON CAMPUS
@@ -73,7 +79,9 @@ const ProgramsSection: React.FC = () => {
                 className="w-full"
               />
             </div>
-            <div className="p-6 flex-grow"> {/* Added flex-grow */}
+            <div className="p-6 flex-grow">
+              {" "}
+              {/* Added flex-grow */}
               <h3 className="text-xl font-semibold mb-2">
                 Backend Development
               </h3>
@@ -92,7 +100,7 @@ const ProgramsSection: React.FC = () => {
                 </span>
               </div>
             </div>
-            <div className="flex justify-between items-center p-4 bg-gray-100">
+            <div className="flex justify-between items-center p-4 bg-blue-500 text-white font-bold">
               <div>
                 <h3>₦450,000</h3>
               </div>
@@ -100,8 +108,7 @@ const ProgramsSection: React.FC = () => {
               <div>
                 <a
                   href="/pdf/docker_cheatsheet.pdf"
-                  download={"Backend-syllabus"}
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200"
+                  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-200"
                 >
                   Download Syllabus
                 </a>
@@ -110,7 +117,9 @@ const ProgramsSection: React.FC = () => {
           </div>
 
           {/* Fullstack Development Program Card */}
-          <div className="border rounded-lg overflow-hidden shadow-md flex flex-col"> {/* Added flex-col */}
+          <div className="border rounded-lg overflow-hidden shadow-md flex flex-col">
+            {" "}
+            {/* Added flex-col */}
             <div className="relative">
               <span className="absolute top-2 left-2 bg-blue-500 text-white px-3 py-1 rounded-md text-sm">
                 ON CAMPUS
@@ -121,7 +130,9 @@ const ProgramsSection: React.FC = () => {
                 className="w-full"
               />
             </div>
-            <div className="p-6 flex-grow"> {/* Added flex-grow */}
+            <div className="p-6 flex-grow">
+              {" "}
+              {/* Added flex-grow */}
               <h3 className="text-xl font-semibold mb-2">
                 Fullstack Development
               </h3>
@@ -140,21 +151,31 @@ const ProgramsSection: React.FC = () => {
                 </span>
               </div>
             </div>
-            <div className="flex justify-between items-center p-4 bg-gray-100">
+            <div className="flex justify-between items-center p-4 bg-blue-500 text-white font-bold">
               <div>
-                <h3>₦800,000</h3>
+                <h3>₦1,000,000</h3>
               </div>
               {/* Download button */}
               <div>
                 <a
                   href="/pdf/docker_cheatsheet.pdf"
-                  download={"Fullstack-syllabus"}
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200"
+                  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-200"
                 >
                   Download Syllabus
                 </a>
               </div>
             </div>
+          </div>
+          <div className="inline-flex items-center">
+            <Link 
+              href="/courses"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+            >
+              View All Courses
+              <svg className="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </Link>
           </div>
         </div>
       </div>

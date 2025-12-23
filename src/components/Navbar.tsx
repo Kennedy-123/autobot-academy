@@ -1,47 +1,89 @@
 'use client';
-import React, { useState } from 'react';
+
+import { useState } from 'react';
 import { SignedIn, SignedOut, UserButton, SignInButton } from '@clerk/nextjs';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const isDetailsPage =
+    pathname.startsWith('/courses/') && pathname !== '/courses';
 
   return (
-    <nav className="bg-gray-800 p-4 text-white">
+    <nav
+      className={
+        isDetailsPage
+          ? 'bg-black bg-opacity-50 absolute z-10 w-full p-4 text-white'
+          : 'absolute z-1 w-full p-4 text-white'
+      }
+    >
       <div className="container mx-auto flex justify-between items-center">
+        {/* Logo */}
         <Link href="/" className="text-xl font-bold">
           Autobot Academy
         </Link>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <button onClick={toggleMobileMenu}>
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
+        {/* Desktop Links (Details Page Only) */}
+        {isDetailsPage && (
+          <div className="hidden md:flex space-x-6">
+            <Link href="/" className="hover:text-gray-300">
+              Home
+            </Link>
+            <Link href="/courses" className="hover:text-gray-300">
+              Courses
+            </Link>
+          </div>
+        )}
 
-        {/* Navigation Links */}
-        <div
-          className={`absolute md:static top-16 left-0 w-full md:w-auto bg-gray-800 md:bg-transparent p-4 md:p-0 md:flex items-center space-x-4 transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen ? 'block' : 'hidden md:flex'
-          }`}
-        >
-          <Link href="/courses" className="block py-2 px-4 md:inline md:p-0">Courses</Link>
-          <Link href="/about" className="block py-2 px-4 md:inline md:p-0">About</Link>
+        {/* Right Section */}
+        <div className="flex items-center gap-4">
+          {/* Auth */}
           <SignedIn>
             <UserButton />
           </SignedIn>
-          
           <SignedOut>
             <SignInButton mode="modal" />
           </SignedOut>
+
+          {/* Mobile Menu Button (Details Page Only) */}
+          {isDetailsPage && (
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden"
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          )}
         </div>
       </div>
+
+      {/* Mobile Menu (Details Page Only) */}
+      {isDetailsPage && isMobileMenuOpen && (
+        <div className="md:hidden mt-4 bg-black bg-opacity-90 rounded-lg p-4 space-y-4">
+          <Link
+            href="/"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="block hover:text-gray-300"
+          >
+            Home
+          </Link>
+          <Link
+            href="/courses"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="block hover:text-gray-300"
+          >
+            Courses
+          </Link>
+        </div>
+      )}
     </nav>
   );
 };
