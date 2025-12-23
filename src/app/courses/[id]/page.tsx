@@ -12,13 +12,12 @@ import {
 } from "react-icons/fa";
 import courses from "@/data/courses";
 
-interface PageProp {
-  params: { id: string };
+interface PageProps {
+    params: Promise<{ id: string }>;
 }
 
-const CourseDetails: React.FC<PageProp> = async ({ params }) => {
-    const Params = await params;
-  const courseId = decodeURIComponent(Params.id).toLowerCase();
+const CourseDetails = async ({ params }: PageProps) => {
+    const courseId = decodeURIComponent((await params).id).toLowerCase();
   // Find the course with the matching ID
   const course = courses.find((c) => c.name.toLowerCase() === courseId);
 
