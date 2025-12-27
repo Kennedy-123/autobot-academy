@@ -32,6 +32,15 @@ const CourseDetails = async ({ params }: PageProps) => {
         <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
           <div className="md:flex">
             <div className="md:w-2/3 p-8">
+              <div className="md:hidden rounded-lg overflow-hidden shadow-md mb-6 mt-10">
+                <Image
+                  src={course.img}
+                  alt={course.name}
+                  width={800}
+                  height={450}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
               <span className="inline-block bg-emerald-50 text-emerald-700 text-sm font-medium px-3 py-1 rounded-full mb-4">
                 {course.availability}
               </span>
@@ -39,7 +48,7 @@ const CourseDetails = async ({ params }: PageProps) => {
                 {course.name}
               </h1>
               <p className="text-gray-600 text-lg mb-6">{course.desc}</p>
-              <div className="rounded-lg overflow-hidden shadow-md mb-6">
+              <div className="hidden md:block rounded-lg overflow-hidden shadow-md mb-6">
                 <Image
                   src={course.img}
                   alt={course.name}
