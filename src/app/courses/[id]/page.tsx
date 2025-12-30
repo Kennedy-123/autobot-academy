@@ -73,9 +73,6 @@ const CourseDetails = async ({ params }: PageProps) => {
                 </div>
               </div>
               <div className="flex flex-wrap gap-4">
-                <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                  Apply Now
-                </button>
                 <button className="border border-emerald-600 text-emerald-600 hover:bg-emerald-50 hover:cursor-pointer px-6 py-3 rounded-lg font-medium transition-colors">
                   Download Syllabus
                 </button>

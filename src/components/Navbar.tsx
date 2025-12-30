@@ -1,16 +1,39 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
+import { isTokenExpired } from '@/utils/jwt';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const pathname = usePathname();
 
+  useEffect(() => {
+    // Check if user is logged in with valid token
+    const checkAuth = () => {
+      const tokenValid = !isTokenExpired();
+      setIsLoggedIn(tokenValid);
+    };
+    
+    checkAuth();
+    
+    // Check token validity periodically (every minute)
+    const interval = setInterval(checkAuth, 60000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+  };
+
   const isDetailsPage =
-    pathname.startsWith('/courses/') && pathname !== '/courses';
+    pathname.startsWith('/courses/') && pathname !== '/courses' ||
+    pathname === '/login' || pathname === '/register';
 
   return (
     <nav
@@ -40,8 +63,22 @@ const Navbar = () => {
 
         {/* Right Section */}
         <div className="flex items-center gap-4">
-          {/* Auth */}
-          <p>SIGNUP</p>
+          {isLoggedIn ? (
+            <>
+              <button
+                onClick={handleLogout}
+                className="hover:text-gray-300"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link href="/login" className="hover:text-gray-300">
+                Login
+              </Link>
+            </>
+          )}
 
           {/* Mobile Menu Button (Details Page Only) */}
           {isDetailsPage && (
@@ -76,6 +113,28 @@ const Navbar = () => {
           >
             Courses
           </Link>
+          
+          {/* Auth Links for Mobile */}
+          {isLoggedIn && (
+            <>
+              <Link
+                href="/courses"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block hover:text-gray-300"
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="block hover:text-gray-300 text-left"
+              >
+                Logout
+              </button>
+            </>
+          )}
         </div>
       )}
     </nav>
