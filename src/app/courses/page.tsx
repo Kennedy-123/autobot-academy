@@ -29,13 +29,13 @@ export default function Courses() {
               key={course.name}
               className="bg-white rounded-lg shadow-md overflow-hidden"
             >
-              <div className="relative">
+              <div className="relative h-48 sm:h-48">
                 <Image
                   src={course.img}
                   alt="Backend Development"
-                  width={500}
-                  height={500}
-                  className="w-full h-48 object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 <span className="absolute top-4 left-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm">
                   {course.availability}
